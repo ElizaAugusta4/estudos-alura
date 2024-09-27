@@ -1,0 +1,5 @@
+comandos usados: 
+
+terraform init, terraform plan, terraform apply.
+
+ssh -i "chave.pem" ec2-user@ec2-54-172-35-232.compute-1.amazonaws.com
