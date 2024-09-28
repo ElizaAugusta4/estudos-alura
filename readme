@@ -1,13 +1,85 @@
-comandos usados: 
+Infraestrutura com Terraform, Ansible e Django
 
-terraform init, terraform plan, terraform apply.
+Este repositório contém um projeto que utiliza Terraform para provisionamento de infraestrutura na AWS, Ansible para automação de configuração e Django para o desenvolvimento de uma aplicação web.
 
-ssh -i "chave.pem" ec2-user@ec2-54-172-35-232.compute-1.amazonaws.com
+## Pré-requisitos
 
-ansible-playbook playbook.yml -u ec2-user --private-key chave.pem -i hosts.yml 
+Antes de começar, certifique-se de ter os seguintes requisitos instalados em sua máquina:
 
-ativando máquina virtual . venv/bin/activate
+- [Terraform](https://www.terraform.io/downloads)
+- [Python 3.x](https://www.python.org/downloads/)
+- [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+- Chave PEM para acesso SSH às instâncias EC2
 
-pip freeze visualizar pacotes instalados
+## Configuração do Projeto
 
-python manage.py runserver 0.0.0.0:8000 - ligar o servidor python
+### 1. Provisionamento da Infraestrutura com Terraform
+
+1. Inicialize o Terraform no diretório raiz do projeto:
+   ```bash
+   terraform init
+   ```
+
+2. Gere o plano de execução para visualizar as mudanças que serão aplicadas:
+   ```bash
+   terraform plan
+   ```
+
+3. Aplique as mudanças para criar a infraestrutura na AWS:
+   ```bash
+   terraform apply
+   ```
+   - Confirme a execução digitando `yes` quando solicitado.
+
+### 2. Acesso à Instância EC2
+
+1. Conecte-se à instância EC2 usando o SSH com a chave PEM:
+   ```bash
+   ssh -i "chave.pem" ec2-user@<EC2_PUBLIC_DNS>
+   ```
+   - Substitua `<EC2_PUBLIC_DNS>` pelo DNS público da sua instância EC2.
+
+### 3. Automação com Ansible
+
+1. Execute o playbook Ansible para configurar a instância EC2:
+   ```bash
+   ansible-playbook playbook.yml -u ec2-user --private-key chave.pem -i hosts.yml
+   ```
+
+### 4. Configuração do Ambiente Django
+
+1. Ative o ambiente virtual Python:
+   ```bash
+   source venv/bin/activate
+   ```
+
+2. Verifique os pacotes instalados no ambiente virtual:
+   ```bash
+   pip freeze
+   ```
+
+3. Inicie o servidor Django:
+   ```bash
+   python manage.py runserver 0.0.0.0:8000
+   ```
+   - A aplicação Django estará acessível em `http://<EC2_PUBLIC_DNS>:8000`.
+
+## Estrutura do Projeto
+
+- `main.tf`: Arquivo principal de configuração do Terraform.
+- `playbook.yml`: Playbook Ansible para configurar a instância EC2.
+- `hosts.yml`: Arquivo de inventário do Ansible.
+- `manage.py`: Comando de gerenciamento do Django.
+- `venv/`: Diretório do ambiente virtual Python.
+
+## Notas Adicionais
+
+- **Segurança**: Certifique-se de manter a chave PEM segura e nunca a compartilhe em repositórios públicos.
+- **Variáveis de Ambiente**: Pode ser necessário configurar variáveis de ambiente para o projeto Django, como `DATABASE_URL` e `SECRET_KEY`.
+- **Repositórios Externos**: Se necessário, forneça detalhes sobre a configuração de repositórios adicionais, como dependências no `requirements.txt`.
+
+## Referências
+
+- [Documentação do Terraform](https://www.terraform.io/docs/index.html)
+- [Documentação do Ansible](https://docs.ansible.com/)
+- [Documentação do Django](https://docs.djangoproject.com/en/stable/)
