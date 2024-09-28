@@ -16,52 +16,52 @@ Antes de começar, certifique-se de ter os seguintes requisitos instalados em su
 ### 1. Provisionamento da Infraestrutura com Terraform
 
 1. Inicialize o Terraform no diretório raiz do projeto:
-   ```bash
+   
    terraform init
-   ```
+   
 
 2. Gere o plano de execução para visualizar as mudanças que serão aplicadas:
-   ```bash
+   
    terraform plan
-   ```
+   
 
 3. Aplique as mudanças para criar a infraestrutura na AWS:
-   ```bash
+
    terraform apply
-   ```
+   
    - Confirme a execução digitando `yes` quando solicitado.
 
 ### 2. Acesso à Instância EC2
 
 1. Conecte-se à instância EC2 usando o SSH com a chave PEM:
-   ```bash
+
    ssh -i "chave.pem" ec2-user@<EC2_PUBLIC_DNS>
-   ```
+
    - Substitua `<EC2_PUBLIC_DNS>` pelo DNS público da sua instância EC2.
 
 ### 3. Automação com Ansible
 
 1. Execute o playbook Ansible para configurar a instância EC2:
-   ```bash
+   
    ansible-playbook playbook.yml -u ec2-user --private-key chave.pem -i hosts.yml
-   ```
+
 
 ### 4. Configuração do Ambiente Django
 
 1. Ative o ambiente virtual Python:
-   ```bash
+
    source venv/bin/activate
-   ```
+
 
 2. Verifique os pacotes instalados no ambiente virtual:
-   ```bash
+
    pip freeze
-   ```
+
 
 3. Inicie o servidor Django:
-   ```bash
+
    python manage.py runserver 0.0.0.0:8000
-   ```
+
    - A aplicação Django estará acessível em `http://<EC2_PUBLIC_DNS>:8000`.
 
 ## Estrutura do Projeto
