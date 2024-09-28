@@ -2,7 +2,7 @@ Infraestrutura com Terraform, Ansible e Django
 
 Este repositório contém um projeto que utiliza Terraform para provisionamento de infraestrutura na AWS, Ansible para automação de configuração e Django para o desenvolvimento de uma aplicação web.
 
-## Pré-requisitos
+Pré-requisitos
 
 Antes de começar, certifique-se de ter os seguintes requisitos instalados em sua máquina:
 
@@ -11,9 +11,9 @@ Antes de começar, certifique-se de ter os seguintes requisitos instalados em su
 - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 - Chave PEM para acesso SSH às instâncias EC2
 
-## Configuração do Projeto
+Configuração do Projeto
 
-### 1. Provisionamento da Infraestrutura com Terraform
+1. Provisionamento da Infraestrutura com Terraform
 
 1. Inicialize o Terraform no diretório raiz do projeto:
    
@@ -31,7 +31,7 @@ Antes de começar, certifique-se de ter os seguintes requisitos instalados em su
    
    - Confirme a execução digitando `yes` quando solicitado.
 
-### 2. Acesso à Instância EC2
+2. Acesso à Instância EC2
 
 1. Conecte-se à instância EC2 usando o SSH com a chave PEM:
 
@@ -39,14 +39,14 @@ Antes de começar, certifique-se de ter os seguintes requisitos instalados em su
 
    - Substitua `<EC2_PUBLIC_DNS>` pelo DNS público da sua instância EC2.
 
-### 3. Automação com Ansible
+3. Automação com Ansible
 
 1. Execute o playbook Ansible para configurar a instância EC2:
    
    ansible-playbook playbook.yml -u ec2-user --private-key chave.pem -i hosts.yml
 
 
-### 4. Configuração do Ambiente Django
+4. Configuração do Ambiente Django
 
 1. Ative o ambiente virtual Python:
 
@@ -64,7 +64,7 @@ Antes de começar, certifique-se de ter os seguintes requisitos instalados em su
 
    - A aplicação Django estará acessível em `http://<EC2_PUBLIC_DNS>:8000`.
 
-## Estrutura do Projeto
+Estrutura do Projeto
 
 - `main.tf`: Arquivo principal de configuração do Terraform.
 - `playbook.yml`: Playbook Ansible para configurar a instância EC2.
@@ -72,13 +72,13 @@ Antes de começar, certifique-se de ter os seguintes requisitos instalados em su
 - `manage.py`: Comando de gerenciamento do Django.
 - `venv/`: Diretório do ambiente virtual Python.
 
-## Notas Adicionais
+Notas Adicionais
 
 - **Segurança**: Certifique-se de manter a chave PEM segura e nunca a compartilhe em repositórios públicos.
 - **Variáveis de Ambiente**: Pode ser necessário configurar variáveis de ambiente para o projeto Django, como `DATABASE_URL` e `SECRET_KEY`.
 - **Repositórios Externos**: Se necessário, forneça detalhes sobre a configuração de repositórios adicionais, como dependências no `requirements.txt`.
 
-## Referências
+Referências
 
 - [Documentação do Terraform](https://www.terraform.io/docs/index.html)
 - [Documentação do Ansible](https://docs.ansible.com/)
