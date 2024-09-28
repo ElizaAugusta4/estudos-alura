@@ -1,0 +1,45 @@
+# ---
+# - hosts: terraform-ansible
+#   tasks:
+    # - name: criando o arquivo
+    #   copy:
+    #     dest: /home/ec2-user/index.html
+    #     content: "<h1>Feito com terraform e ansible</h1>"
+
+    # - name: criando o servidor
+    #   shell: "nohup busybox httpd -f -p 8080 &"
+---
+- hosts: terraform-ansible
+  become: yes
+  tasks:
+    - name: Instalar o yum se não estiver presente
+      dnf:
+        name: yum
+        state: present
+        update_cache: yes
+
+    - name: Instalar Python 3 e virtualenv usando dnf
+      dnf:
+        name:
+          - python3
+          - python3-virtualenv
+        state: present
+        update_cache: yes
+
+    - name: Instalando dependencias com pip (Django e Django Rest)
+      pip:
+        virtualenv: /home/ubuntu/tcc/venv
+        name:
+        - django
+        - djangorestframework
+        
+    # - name: Iniciando o projeto
+    #   shell: '. /home/ubuntu/tcc/venv/bin/activate; django-admin startproject setup /home/ubuntu/tcc/'
+
+    - name: Alterando os hosts do settings 
+      lineinfile:
+        path: /home/ubuntu/tcc/setup/settings.py
+        regexp: 'ALLOWED_HOSTS'
+        line: 'ALLOWED_HOSTS = ["*"]'
+        backrefs: yes
+

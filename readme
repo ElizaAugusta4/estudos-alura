@@ -3,3 +3,11 @@ comandos usados:
 terraform init, terraform plan, terraform apply.
 
 ssh -i "chave.pem" ec2-user@ec2-54-172-35-232.compute-1.amazonaws.com
+
+ansible-playbook playbook.yml -u ec2-user --private-key chave.pem -i hosts.yml 
+
+ativando máquina virtual . venv/bin/activate
+
+pip freeze visualizar pacotes instalados
+
+python manage.py runserver 0.0.0.0:8000 - ligar o servidor python
