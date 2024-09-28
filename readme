@@ -74,9 +74,9 @@ Estrutura do Projeto
 
 Notas Adicionais
 
-- **Segurança**: Certifique-se de manter a chave PEM segura e nunca a compartilhe em repositórios públicos.
-- **Variáveis de Ambiente**: Pode ser necessário configurar variáveis de ambiente para o projeto Django, como `DATABASE_URL` e `SECRET_KEY`.
-- **Repositórios Externos**: Se necessário, forneça detalhes sobre a configuração de repositórios adicionais, como dependências no `requirements.txt`.
+- Segurança: Certifique-se de manter a chave PEM segura e nunca a compartilhe em repositórios públicos.
+- Variáveis de Ambiente: Pode ser necessário configurar variáveis de ambiente para o projeto Django, como `DATABASE_URL` e `SECRET_KEY`.
+- Repositórios Externos: Se necessário, forneça detalhes sobre a configuração de repositórios adicionais, como dependências no `requirements.txt`.
 
 Referências
 
